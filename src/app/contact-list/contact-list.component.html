@@ -1,0 +1,159 @@
+<div class="container mt-4">
+  <div>
+    <button
+      type="button"
+      class="btn flex-fill"
+      (click)="goToForm()"
+      style="background-color: #fd917e; color: white"
+    >
+      Add Contact Details
+    </button>
+  </div>
+  <div
+    class="table-responsive pg-ctnr ov-y-a bg-light-lite fancy-table-outer inner-padding p-0"
+  >
+    <div class="fullwidth">
+      <div class="table-responsive">
+        <p-table
+          #dt
+          dataKey="id"
+          [rowHover]="true"
+          [rows]="rows"
+          [paginator]="true"
+          [totalRecords]="tableData.length"
+          [filterDelay]="0"
+          [value]="tableData"
+        >
+          <ng-template pTemplate="caption">
+            <div class="table-header" style="text-align: center">
+              Contact List
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="id" style="min-width: 14rem">
+                <div
+                  class="flex justify-content-between align-items-center table-col"
+                >
+                  Id
+                  <p-sortIcon field="id"></p-sortIcon>
+                </div>
+              </th>
+              <th pSortableColumn="name" style="min-width: 14rem">
+                <div
+                  class="flex justify-content-between align-items-center table-col"
+                >
+                  Name
+                  <p-sortIcon field="name"></p-sortIcon>
+                </div>
+              </th>
+              <th style="min-width: 14rem">
+                <div
+                  class="flex justify-content-between align-items-center table-col"
+                >
+                  Phone
+                </div>
+              </th>
+              <th style="min-width: 10rem">
+                <div
+                  class="flex justify-content-between align-items-center table-col"
+                >
+                  Email
+                </div>
+              </th>
+              <th style="min-width: 10rem">
+                <div
+                  class="flex justify-content-between align-items-center table-col"
+                >
+                  Actions
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-data let-rowIndex="rowIndex">
+            <tr class="p-selectable-row">
+              <td>
+                {{ data.id + 1 }}
+              </td>
+              <td>
+                {{ data.name }}
+              </td>
+              <td class="p-column-amount">
+                {{ data.phone }}
+              </td>
+              <td>
+                {{ data.email }}
+              </td>
+              <td>
+                <button
+                  class="btn btn-sm me-2"
+                  (click)="onEdit(data.id)"
+                  style="background-color: #263a53; color: white"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-danger btn-sm"
+                  (click)="openDeletePopup(data.id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="paginatorleft" let-state>
+            <div>
+              {{ infotext }}
+            </div>
+          </ng-template>
+          <ng-template pTemplate="paginatorright">
+            <div class="d-flex align-items-center">
+              <div>
+                <select class="custom-dropdown pt-0" [(ngModel)]="rows" (click)="loadContacts()">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                </select>
+              </div>
+              <div class="paginatorCaption d-flex align-items-center">
+                <ng-container>records per page</ng-container>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+              <td colspan="8">No Data found.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" *ngIf="deleteContact">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Are you sure you want to delete entry?
+        </h1>
+        <button type="button" class="btn-close" (click)="closePopup()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="closePopup()"
+          >
+            Close
+          </button>
+          <button type="button" class="btn btn-danger" (click)="onDelete()">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  cursor: pointer;
+}
+
+button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+div {
+  margin-top: 10px;
+}
+
+.modal {
+  display: block;
+  background-color: rgba(4, 4, 4, 0.8) !important;
+}

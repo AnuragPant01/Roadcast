@@ -1,0 +1,87 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="row w-75 g-0">
+    <div class="col-md-5 d-flex justify-content-center">
+      <div
+        class="card shadow-sm w-100 h-100 header d-flex justify-content-center align-items-center"
+        style="padding: 20px; background-color: #263a53; color: white"
+      >
+        <h3 style="text-align: center; padding: 10px; margin: 0 auto">
+          Contact Form
+        </h3>
+      </div>
+    </div>
+    <div class="col-md-7 d-flex justify-content-center">
+      <div
+        class="card shadow-sm w-100 h-100"
+        style="padding: 20px; background-color: #bed3e5"
+      >
+        <div class="card-body">
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                id="name"
+                type="text"
+                class="form-control"
+                formControlName="name"
+              />
+              <div
+                *ngIf="isSubmitted && contactForm.get('name')?.invalid"
+                class="text-danger"
+              >
+                This field is required.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input
+                id="phone"
+                type="text"
+                class="form-control"
+                formControlName="phone"
+              />
+              <div
+                *ngIf="isSubmitted && contactForm.get('phone')?.invalid"
+                class="text-danger"
+              >
+                This field is required.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                id="email"
+                type="email"
+                class="form-control"
+                formControlName="email"
+              />
+              <div
+                *ngIf="isSubmitted && contactForm.get('email')?.invalid"
+                class="text-danger"
+              >
+                A valid email is required.
+              </div>
+            </div>
+            <div class="d-flex flex-column flex-md-row w-100">
+              <button
+                type="submit"
+                class="btn flex-fill me-md-2 mb-2 mb-md-0"
+                style="background-color: #fd917e; color: white"
+              >
+                Save Contact
+              </button>
+              <button
+                type="button"
+                class="btn flex-fill"
+                (click)="goToList()"
+                style="background-color: #263a53; color: white"
+              >
+                Go To List
+              </button>
+            </div>            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
