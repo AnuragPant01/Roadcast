@@ -68,7 +68,7 @@
                 class="btn flex-fill me-md-2 mb-2 mb-md-0"
                 style="background-color: #fd917e; color: white"
               >
-                Save Contact
+                {{contactService.id!= null ? 'Edit Contact' : 'Save Contact'}}
               </button>
               <button
                 type="button"

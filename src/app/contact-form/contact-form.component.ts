@@ -14,12 +14,12 @@ export class ContactFormComponent implements OnInit {
   isSubmitted:boolean = false;
   contactForm!: FormGroup;
 
-  constructor(private fb: FormBuilder,private router:Router,private toast:ToastrService,private contactService:ContactService) {
+  constructor(private fb: FormBuilder,private router:Router,private toast:ToastrService,public contactService:ContactService) {
   }
 
   ngOnInit(): void {
     this.contactFormInit();
-    if(this.contactService.id){
+    if(this.contactService.id !== null){
       this.getEditData();
     }
   }
@@ -52,7 +52,7 @@ export class ContactFormComponent implements OnInit {
     }
     const contact: Contact = this.contactForm.value;
     let msg = '';
-    if(this.contactService.id){
+    if(this.contactService.id !== null){
       this.contactService.updateContact(contact)
       msg = 'Edited List Data'
     }else{
